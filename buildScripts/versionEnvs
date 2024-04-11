@@ -77,6 +77,9 @@ elif test -r /usr/lib/os-release ; then
   cat /usr/lib/os-release
   export BUILD_OS=$(grep '^ID=' /usr/lib/os-release | cut -d'=' -f2)
   export BUILD_DIST=$(grep '^VERSION_ID=' /usr/lib/os-release | cut -d'=' -f2)
+elif test -r /System/Library/CoreServices/SystemVersion.plist ; then
+  export BUILD_OS=macOS
+  export BUILD_DIST=$(sw_vers -productVersion)
 else
   echo "FAILURE: could not determine release"
   exit -1
