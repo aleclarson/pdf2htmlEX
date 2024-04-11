@@ -21,7 +21,15 @@ add_custom_target(dist
         | bzip2 > ${CMAKE_BINARY_DIR}/${ARCHIVE_NAME}.tar.bz2
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 
-find_package(PkgConfig)
+find_package(PkgConfig REQUIRED)
+
+if(APPLE)
+    pkg_check_modules(GLIB REQUIRED glib-2.0 gio-2.0)
+    include_directories(${GLIB_INCLUDE_DIRS})
+    link_directories(${GLIB_LIBRARY_DIRS})
+
+    set(PDF2HTMLEX_LIBS ${PDF2HTMLEX_LIBS} -framework CoreServices)
+endif()
 
 
 # SINCE we have a very intimate relationship with a particular version of 
