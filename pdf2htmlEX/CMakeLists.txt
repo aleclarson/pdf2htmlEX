@@ -104,6 +104,7 @@ set(PDF2HTMLEX_LIBS ${PDF2HTMLEX_LIBS}
   ${FONTFORGE_LIBRARIES}
   ${LIB_INTL_LIBRARIES}
   ${CAIRO_LIBRARIES}
+  -lcairo
   -ljpeg
   -lpng
   -lfontconfig
